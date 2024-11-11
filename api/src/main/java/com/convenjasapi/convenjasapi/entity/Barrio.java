@@ -16,6 +16,8 @@ public class Barrio implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    private Integer maxParticipate;
+    private Integer maxInvitate;
 
     public Set<Participante> getParticipantes() {
         return participantes;
@@ -54,6 +56,22 @@ public class Barrio implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Integer getMaxParticipate() {
+        return maxParticipate;
+    }
+
+    public void setMaxParticipate(Integer maxParticipate) {
+        this.maxParticipate = maxParticipate;
+    }
+
+    public Integer getMaxInvitate() {
+        return maxInvitate;
+    }
+
+    public void setMaxInvitate(Integer maxInvitate) {
+        this.maxInvitate = maxInvitate;
     }
 
     private static final long serialVersionUID = 1L;

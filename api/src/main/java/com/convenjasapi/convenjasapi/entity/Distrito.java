@@ -15,6 +15,7 @@ public class Distrito implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    private String backgroudColor;
 
     @OneToMany(mappedBy = "distrito")
     @JsonIgnore
@@ -42,6 +43,14 @@ public class Distrito implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getBackgroudColor() {
+        return backgroudColor;
+    }
+
+    public void setBackgroudColor(String backgroudColor) {
+        this.backgroudColor = backgroudColor;
     }
 
     private static final long serialVersionUID = 1L;

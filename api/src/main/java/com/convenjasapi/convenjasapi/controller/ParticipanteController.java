@@ -17,7 +17,7 @@ import java.util.Map;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/participante")
 public class ParticipanteController {
 
     @Autowired
@@ -26,13 +26,15 @@ public class ParticipanteController {
     @Autowired
     private DistritoService distritoService;
 
-    @GetMapping("/participante")
+    @GetMapping()
     public List<Participante> allParticipante() {
         return participanteService.findAll();
     }
 
-    @GetMapping("/participante/{documento}/{idEstaca}")
-    public ResponseEntity<?> sendDistritoValidarPaciente(@PathVariable Integer documento, @PathVariable Long idEstaca) {
+    @GetMapping("districts/{documento}/{idEstaca}/{isGuest}")
+    public ResponseEntity<?> sendDistritoValidarPaciente(@PathVariable Integer documento,
+                                                         @PathVariable Long idEstaca,
+                                                         @PathVariable Integer isGuest) {
         Participante participante = null;
         Map<String, Object> response = new HashMap<>();
         try {
@@ -45,25 +47,26 @@ public class ParticipanteController {
         if (participante == null) {
             response.put("mensaje", "NO EXISTE");
             List<Distrito> distrit = null;
-            distrit = participanteService.listDistritosByIdEstaca(idEstaca);
+            distrit = participanteService.listDistritosByIdEstaca(idEstaca, isGuest);
             response.put("distritos", distrit);
             return new ResponseEntity<Map<String, Object> >(response, HttpStatus.OK);
         }
         return  new ResponseEntity<Participante>(participante, HttpStatus.OK);
     }
 
-    @PostMapping("/participante")
+    @PostMapping()
     public ResponseEntity<?> savedParticipante(@RequestBody Participante participante){
         Participante participante1 = null;
         Map<String, Object> response = new HashMap<>();
         int verificar = 0;
-        verificar = distritoService.distritosById(participante.getDistrito().getId(), participante.getEstaca().getId());
+        int isGuest = participante.getMiembro() == "Invitado" ? 1 : 0;
+        verificar = distritoService.distritosById(participante.getDistrito().getId(), participante.getBarrio().getId(), isGuest);
         try {
             if (verificar == 0) {
                 participante1 = participanteService.saved(participante);
             } else {
                 Distrito distrito = distritoService.findById(participante.getDistrito().getId());
-                response.put("mensaje", "El cupo para el distrito ".concat(distrito.getNombre()).concat(" ya se ha llenado. Seleeccione otro distrito "));
+                response.put("mensaje", "El cupo para el distrito ".concat(distrito.getNombre()).concat(" ya se ha llenado. Seleccione otro distrito "));
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
             }
         } catch (DataAccessException e) {
@@ -74,5 +77,14 @@ public class ParticipanteController {
         response.put("mensaje", "Exito");
         response.put("cliente", participante1);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{idEstaca}/{idBarrio}/{idDistrito}")
+    public ResponseEntity<?> participants(@PathVariable Long idEstaca,
+                                          @PathVariable Long idBarrio,
+                                          @PathVariable Long idDistrito){
+        Map<String, Object> response = new HashMap<>();
+        response.put("participants", participanteService.participantsByIds(idEstaca, idBarrio, idDistrito));
+        return new ResponseEntity<Map<String, Object> >(response, HttpStatus.OK);
     }
 }

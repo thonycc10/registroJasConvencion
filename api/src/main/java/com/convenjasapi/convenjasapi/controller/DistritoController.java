@@ -32,7 +32,7 @@ public class DistritoController {
     public ResponseEntity<?> distritoById(@PathVariable Long id, @PathVariable Long idEstaca){
         int valor = 0;
         Map<String, Object> response = new HashMap<>();
-        valor = distritoService.distritosById(id, idEstaca);
+        valor = distritoService.distritosById(id, idEstaca, 0);
         if (valor == 1) {
             response.put("status", "LLENO");
         } else {

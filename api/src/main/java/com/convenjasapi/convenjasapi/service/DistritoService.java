@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface DistritoService {
     public List<Distrito> findAll();
-    public int distritosById(Long id, Long idEstaca);
+    int distritosById(Long id, Long idBarrio, Integer distritosById);
     public Distrito findById(Long id);
 }

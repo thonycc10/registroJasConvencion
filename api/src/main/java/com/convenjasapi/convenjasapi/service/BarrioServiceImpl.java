@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BarrioServiceImpl implements BarrioService {
@@ -25,5 +26,10 @@ public class BarrioServiceImpl implements BarrioService {
     public List<Barrio> findByEstaca(Long id) {
         log.info("Valor de la estaca", id);
         return barrioDao.findByBarrioByEstacaWithEagerRelationships(id);
+    }
+
+    @Override
+    public Barrio findByIdBarrio(Long idBarrio) {
+        return barrioDao.findByIdBarrio(idBarrio);
     }
 }

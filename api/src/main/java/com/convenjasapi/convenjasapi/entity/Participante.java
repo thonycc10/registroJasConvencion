@@ -29,6 +29,14 @@ public class Participante implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
 
+    @Temporal(TemporalType.DATE)
+    private Date recommendExpires;
+    private String hasRecomend;
+    private String priesthood;
+    private String mission;
+    private String skills;
+
+
     @ManyToOne
     private Distrito distrito;
 
@@ -153,6 +161,46 @@ public class Participante implements Serializable {
     @PrePersist // ayuda a crear automaticamente la fech actual de un registro
     public void prePersist() {
         fechaCreacion = new Date();
+    }
+
+    public Date getRecommendExpires() {
+        return recommendExpires;
+    }
+
+    public void setRecommendExpires(Date recommendExpires) {
+        this.recommendExpires = recommendExpires;
+    }
+
+    public String getHasRecomend() {
+        return hasRecomend;
+    }
+
+    public void setHasRecomend(String hasRecomend) {
+        this.hasRecomend = hasRecomend;
+    }
+
+    public String getPriesthood() {
+        return priesthood;
+    }
+
+    public void setPriesthood(String priesthood) {
+        this.priesthood = priesthood;
+    }
+
+    public String getMission() {
+        return mission;
+    }
+
+    public void setMission(String mission) {
+        this.mission = mission;
+    }
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills;
     }
 
     private static final long serialVersionUID = 1L;

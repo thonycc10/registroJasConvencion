@@ -13,5 +13,7 @@ public interface BarrioDao extends JpaRepository<Barrio, Long> {
     @Query("select barrio from Barrio barrio left join fetch barrio.estaca where barrio.estaca.id =:id")
     List<Barrio> findByBarrioByEstacaWithEagerRelationships(@Param("id") Long id);
 
+    @Query("select barrio from Barrio barrio where barrio.id =:id")
+    Barrio findByIdBarrio(@Param("id") Long id);
 
 }

@@ -1,6 +1,8 @@
 package com.convenjasapi.convenjasapi.service;
 
 import com.convenjasapi.convenjasapi.dao.DistritoDao;
+import com.convenjasapi.convenjasapi.dto.ParticipantDto;
+import com.convenjasapi.convenjasapi.entity.Barrio;
 import com.convenjasapi.convenjasapi.entity.Distrito;
 import com.convenjasapi.convenjasapi.entity.Participante;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,22 +22,24 @@ public class DistritoServiceImpl implements DistritoService {
         return distritoDao.findAll();
     }
 
+    @Autowired
+    private BarrioService barrioService;
+
+    @Autowired
+    private ParticipanteService participanteService;
+
     @Override
-    public int distritosById(Long id, Long idEstaca) {
+    public int distritosById(Long distritoId, Long idBarrio, Integer isGuest) {
         int valor = 0;
-       Distrito distrito = distritoDao.findById(id).orElse(null);
-        int cMaxima = 0;
-        for (Participante b : distrito.getParticipantes()) {
-            if (b.getEstaca().getId().equals(idEstaca)) {
-                cMaxima++;
-            } else {
-                return valor; // no se lleno
-            }
-            if(cMaxima >= 6) {
-                valor = 1; // 1 es que se lleno
-                return valor;
-            }
+        Integer totalMember = participanteService.participantTotalByIds(distritoId, idBarrio, 0);
+        Integer totalGuest = participanteService.participantTotalByIds(distritoId, idBarrio, 1);
+        Barrio barrio = barrioService.findByIdBarrio(idBarrio);
+
+        if (totalMember == barrio.getMaxParticipate()
+                || (totalGuest == barrio.getMaxInvitate() && isGuest == 1)) {
+            valor = 1; // 1 es que se lleno
         }
+
         return valor; // no se lleno
     }
 

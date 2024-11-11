@@ -11,13 +11,14 @@ INSERT INTO public.estaca (nombre) VALUES ( 'SANTA ISABEL');
 INSERT INTO public.estaca (nombre) VALUES ( 'TORRE BLANCA');
 
 INSERT INTO public.distrito (nombre) VALUES ('NEFI');
+INSERT INTO public.distrito (nombre) VALUES ('ALMA');
+INSERT INTO public.distrito (nombre) VALUES ('HELAMAN');
+INSERT INTO public.distrito (nombre) VALUES ('MOSIAH');
+INSERT INTO public.distrito (nombre) VALUES ('MORONI');
 INSERT INTO public.distrito (nombre) VALUES ('JACOB');
 INSERT INTO public.distrito (nombre) VALUES ('ENÓS');
 INSERT INTO public.distrito (nombre) VALUES ('JAROM');
 INSERT INTO public.distrito (nombre) VALUES ('KIMBALL');
-INSERT INTO public.distrito (nombre) VALUES ('MOSIAH');
-INSERT INTO public.distrito (nombre) VALUES ('ALMA');
-INSERT INTO public.distrito (nombre) VALUES ('HELAMAN');
 INSERT INTO public.distrito (nombre) VALUES ('MORMÓN');
 INSERT INTO public.distrito (nombre) VALUES ('ETER');
 INSERT INTO public.distrito (nombre) VALUES ('MORONI');
@@ -25,7 +26,6 @@ INSERT INTO public.distrito (nombre) VALUES ('AMMÓN');
 INSERT INTO public.distrito (nombre) VALUES ('HINCKLEY');
 INSERT INTO public.distrito (nombre) VALUES ('LEHI');
 INSERT INTO public.distrito (nombre) VALUES ('AMULEK');
-INSERT INTO public.distrito (nombre) VALUES ('MORONI');
 INSERT INTO public.distrito (nombre) VALUES ('ABINADI');
 INSERT INTO public.distrito (nombre) VALUES ('BENSON');
 INSERT INTO public.distrito (nombre) VALUES ('MCKAY');
@@ -59,13 +59,13 @@ INSERT INTO public.barrio (nombre, estaca_id) VALUES ('VIÑA', 4);
 INSERT INTO public.barrio (nombre, estaca_id) VALUES ('SANTA FE', 4);
 INSERT INTO public.barrio (nombre, estaca_id) VALUES ('BEGONIAS', 4);
 INSERT INTO public.barrio (nombre, estaca_id) VALUES ('LOS MANZANOS', 4);
--- ESTACA INDEPENDENCIA --
-INSERT INTO public.barrio (nombre, estaca_id) VALUES ('17 DE NOVIEMBRE', 5);
-INSERT INTO public.barrio (nombre, estaca_id) VALUES ('PINOS', 5);
-INSERT INTO public.barrio (nombre, estaca_id) VALUES ('VIOLETAS', 5);
-INSERT INTO public.barrio (nombre, estaca_id) VALUES ('JOSE GALVEZ', 5);
-INSERT INTO public.barrio (nombre, estaca_id) VALUES ('INDEPENDENCIA', 5);
-INSERT INTO public.barrio (nombre, estaca_id) VALUES ('MAGNOLIAS', 5);
+-- ESTACA INDEPENDENCIA --[
+INSERT INTO public.barrio (nombre, estaca_id) VALUES ('17 DE NOVIEMBRE', 1);
+INSERT INTO public.barrio (nombre, estaca_id) VALUES ('PINOS', 1);
+INSERT INTO public.barrio (nombre, estaca_id) VALUES ('VIOLETAS', 1);
+INSERT INTO public.barrio (nombre, estaca_id) VALUES ('JOSE GALVEZ', 1);
+INSERT INTO public.barrio (nombre, estaca_id) VALUES ('INDEPENDENCIA', 1);
+INSERT INTO public.barrio (nombre, estaca_id) VALUES ('MAGNOLIAS', 1);
 -- ESTACA TAHUANTNSUYO --
 INSERT INTO public.barrio (nombre, estaca_id) VALUES ('TAHUANTINSUYO', 6);
 INSERT INTO public.barrio (nombre, estaca_id) VALUES ('CONTISUYO', 6);
